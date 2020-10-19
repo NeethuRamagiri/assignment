@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Maersk Coding Exercise</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <style>
+            @media only screen and (max-width:1280px){
+                body{
+                    background: #efefef;
+                }
+                .buttons-for-mobile{
+                    display: none;
+                }
+                .buttons-for-desktop{
+                    display: block;
+                }
+                .shuffle-btn , .sort-btn{
+                    background: #72c3dc;
+                    color: #fff;
+                    width: 85px;
+                    border: none;
+                    padding: 10px;
+                    border-radius: 10px;
+                    box-shadow: 0px 3px 1px #2F454E;
+                }
+                ul.numbers-list{
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+                }
+                li.numbers-block {
+                    list-style: none;
+                    float: left;
+                    width: 25%;
+                    margin-right:2%;
+                    text-align: center;
+                    color: #fff;
+                    font-size: 80px;
+                    margin-bottom: 20px;
+                    height: 100px;
+                    background: #bfbfbf;
+                }
+                li.numbers-block:first-child{
+                    background: #72c3dc;
+                }
+                li.numbers-block + li.numbers-block{
+                    background: #2b8ead;
+                }
+                li.numbers-block + li.numbers-block + li.numbers-block{
+                    background: #6F98A8;
+                }
+                li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block{
+                    background: #333333;
+                }
+                li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block{
+                background: #2F454E;
+                }
+                li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block{
+                    background: #6F98A8;
+                }
+                li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block{
+                    background: #333333;
+                }
+                .author{
+                    display: block;
+                    clear: both;
+                    text-align: center;
+                }
+            }
+            @media only screen and (max-width: 768px) {
+                li.numbers-block{
+                    width: 100%;
+                    float: none;
+                    height: 40px;
+                    font-size: 35px;
+                    background: #bfbfbf !important;
+                    border-left: 5px solid #6F98A8;
+                }
+                .buttons-for-mobile{
+                    display: table;
+                    margin: 15px auto;
+                }
+                .buttons-for-desktop{
+                    display: none;
+                }
+                li.numbers-block:first-child{
+                    border-left: 5px solid #72c3dc;
+                }
+                li.numbers-block + li.numbers-block{
+                    border-left: 5px solid #2b8ead;
+                }
+                li.numbers-block + li.numbers-block + li.numbers-block{
+                    border-left: 5px solid #6F98A8;
+                }
+                li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block{
+                    border-left: 5px solid #333333;
+                }
+                li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block{
+                    border-left: 5px solid #2F454E;
+                }
+                li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block{
+                    border-left: 5px solid #6F98A8;
+                }
+                li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block + li.numbers-block{
+                    border-left: 5px solid #333333;
+                }
+            }
+        </style>
+        <div class="buttons-for-mobile">
+            <button class="shuffle-btn">Shuffle</button>
+            <button class="sort-btn">Sort</button>
+        </div>
+        <div class="numbers-grid">
+            <ul class="numbers-list">
+            </ul>
+        </div>
+        <div class="buttons-for-desktop">
+            <button class="shuffle-btn">Shuffle</button>
+            <button class="sort-btn">Sort</button>
+        </div>
+        <div class="author">Shuffle and sort by {{ Neethu Ramagiri }}</div>
+    </body>
+    <script>
+        var grid = $('.numbers-grid');
+        var numbers = [];
+        for (var i = 1; i <= 9; i++) {
+        grid.append('<li class="numbers-block">' + i + '</li>');
+        numbers.push(i);
+        }
+
+        $(".shuffle-btn").click(function() {
+        var theLength = numbers.length - 1;
+        var toSwap;
+        var temp;
+        
+        for (var i = theLength; i > 0; i--) {
+            toSwap = Math.floor(Math.random() * (i + 1));
+            temp = numbers[i];
+            numbers[i] = numbers[toSwap];
+            numbers[toSwap] = temp;
+        }
+        
+        i = 0;
+        
+        $('.numbers-block').each(function() {
+            this.innerHTML = numbers[i];
+            i++;
+        });
+        });
+        $(".sort-btn").click(function() {
+        numbers.sort();
+        
+        i = 0;
+        
+        $('.numbers-block').each(function() {
+            this.innerHTML = numbers[i];
+            i++;
+        });
+        });
+    </script>
+</html>
